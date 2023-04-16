@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
       
     - name: Build and Test
-      run: swift build && swift test --enable-code-coverage
+      run: swift test --enable-code-coverage
       
     - name: Code coverage
       run: xcrun llvm-cov export -format="lcov" .build/debug/MacAddressTests.xctest -instr-profile .build/debug/codecov/default.profdata > unit.lcov
