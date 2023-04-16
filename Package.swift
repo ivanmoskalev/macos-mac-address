@@ -1,11 +1,11 @@
-// swift-tools-version: 5.8
+// swift-tools-version: 5.7
 
 import PackageDescription
 
 let package = Package(
     name: "macos-mac-address",
     platforms: [
-        .macOS(.v10_13)
+        .macOS(.v10_13),
     ],
     products: [
         .library(name: "MacAddress", targets: ["MacAddress"]),
@@ -14,9 +14,11 @@ let package = Package(
     targets: [
         .target(
             name: "MacAddress",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "MacAddressTests",
-            dependencies: ["MacAddress"]),
+            dependencies: ["MacAddress"]
+        ),
     ]
 )

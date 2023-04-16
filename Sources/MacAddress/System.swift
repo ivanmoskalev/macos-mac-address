@@ -9,7 +9,7 @@ func macAddressFor(_ interfaceRequest: MacAddress.NetworkInterface) -> Data? {
             IOObjectRelease(iterator)
         }
     }
-    
+
     guard let matchingDict = IOBSDNameMatching(default_port, 0, interfaceRequest.name),
           IOServiceGetMatchingServices(default_port,
                                        matchingDict as CFDictionary,
@@ -18,13 +18,14 @@ func macAddressFor(_ interfaceRequest: MacAddress.NetworkInterface) -> Data? {
     else {
         return nil
     }
-    
+
     var candidate = IOIteratorNext(iterator)
     while candidate != IO_OBJECT_NULL {
         if let cftype = IORegistryEntryCreateCFProperty(candidate,
                                                         "IOBuiltin" as CFString,
                                                         kCFAllocatorDefault,
-                                                        0) {
+                                                        0)
+        {
             let isBuiltIn = cftype.takeRetainedValue() as! CFBoolean
             if interfaceRequest.isBuiltIn == CFBooleanGetValue(isBuiltIn) {
                 let property = IORegistryEntrySearchCFProperty(
@@ -38,21 +39,22 @@ func macAddressFor(_ interfaceRequest: MacAddress.NetworkInterface) -> Data? {
                 return property
             }
         }
-        
+
         IOObjectRelease(candidate)
         candidate = IOIteratorNext(iterator)
     }
-    
+
     return nil
 }
 
 private extension MacAddress.NetworkInterface {
     var name: String {
         switch self {
-        case .builtIn(let name), .nonBuiltIn(let name):
+        case let .builtIn(name), let .nonBuiltIn(name):
             return name
         }
     }
+
     var isBuiltIn: Bool {
         switch self {
         case .builtIn: return true
@@ -60,4 +62,3 @@ private extension MacAddress.NetworkInterface {
         }
     }
 }
-

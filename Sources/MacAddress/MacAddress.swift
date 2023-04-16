@@ -1,16 +1,16 @@
-import IOKit
 import Foundation
+import IOKit
 
 /// A structure representing a MAC address.
 public struct MacAddress: Equatable, Hashable {
     let rawData: Data
-    
+
     /// An enumeration representing the types of queryable network interfaces.
     public enum NetworkInterface {
         case builtIn(String)
         case nonBuiltIn(String)
     }
-    
+
     /// Initializes a `MacAddress` instance with the specified network interface.
     ///
     /// - Parameter interface: The network interface for which to obtain the MAC address.
@@ -19,7 +19,7 @@ public struct MacAddress: Equatable, Hashable {
         guard let data = macAddressFor(interface) else { return nil }
         rawData = data
     }
-    
+
     /// A string representation of the MAC address.
     public var stringRepresentation: String {
         rawData

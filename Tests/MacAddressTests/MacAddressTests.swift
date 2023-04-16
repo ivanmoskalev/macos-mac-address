@@ -1,5 +1,5 @@
-import XCTest
 @testable import MacAddress
+import XCTest
 
 final class MacAddressTests: XCTestCase {
     func testAppleRecommended() throws {
@@ -7,7 +7,7 @@ final class MacAddressTests: XCTestCase {
         let expectedAddress = MacAddress(.builtIn("en0")) ?? MacAddress(.builtIn("en1")) ?? MacAddress(.nonBuiltIn("en0"))
         XCTAssertEqual(address, expectedAddress)
     }
-    
+
     func testReturnsRepresentation() throws {
         let address = MacAddress.appStoreCompatible!
         let addressString = address.stringRepresentation
@@ -19,17 +19,17 @@ final class MacAddressTests: XCTestCase {
         XCTAssertEqual(addressString.count, (6 * 2) + 5) // 6 octets, 5 colons
         XCTAssertEqual(address.rawData, reconstructedData)
     }
-    
+
     func testInitPerformance() throws {
         measure {
-            let _ = MacAddress(.builtIn("en0"))
+            _ = MacAddress(.builtIn("en0"))
         }
     }
-    
+
     func testInitPlusStringRepresentationPerformance() throws {
         measure {
             let address = MacAddress(.builtIn("en0"))
-            let _ = address?.stringRepresentation
+            _ = address?.stringRepresentation
         }
     }
 }
