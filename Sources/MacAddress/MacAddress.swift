@@ -3,7 +3,8 @@ import IOKit
 
 /// A structure representing a MAC address.
 public struct MacAddress: Equatable, Hashable {
-    let rawData: Data
+    /// The raw bytes of the MAC address.
+    public let rawData: Data
 
     /// An enumeration representing the types of queryable network interfaces.
     public enum NetworkInterface {
