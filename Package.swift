@@ -5,10 +5,10 @@ import PackageDescription
 let package = Package(
     name: "macos-mac-address",
     platforms: [
-        .macOS(.v10_13),
+        .macOS(.v10_13)
     ],
     products: [
-        .library(name: "MacAddress", targets: ["MacAddress"]),
+        .library(name: "MacAddress", targets: ["MacAddress"])
     ],
     dependencies: [],
     targets: [
@@ -19,6 +19,6 @@ let package = Package(
         .testTarget(
             name: "MacAddressTests",
             dependencies: ["MacAddress"]
-        ),
+        )
     ]
 )

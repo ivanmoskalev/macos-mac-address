@@ -24,10 +24,7 @@ public struct MacAddress: Equatable, Hashable {
     /// A string representation of the MAC address.
     public var stringRepresentation: String {
         rawData
-            .map {
-                String($0, radix: 16, uppercase: true)
-                    .padding(toLength: 2, withPad: "0", startingAt: 0)
-            }
+            .map { String(format: "%02X", $0) }
             .joined(separator: ":")
     }
 }

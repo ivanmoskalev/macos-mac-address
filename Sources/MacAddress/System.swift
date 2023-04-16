@@ -23,8 +23,7 @@ func macAddressFor(_ interfaceRequest: MacAddress.NetworkInterface) -> Data? {
         if let cftype = IORegistryEntryCreateCFProperty(candidate,
                                                         "IOBuiltin" as CFString,
                                                         kCFAllocatorDefault,
-                                                        0)
-        {
+                                                        0) {
             // swiftlint:disable:next force_cast
             let isBuiltIn = cftype.takeRetainedValue() as! CFBoolean
             if interfaceRequest.isBuiltIn == CFBooleanGetValue(isBuiltIn) {
