@@ -23,6 +23,17 @@ final class MacAddressTests: XCTestCase {
         XCTAssertEqual(addressString.count, (6 * 2) + 5) // 6 octets, 5 colons
         XCTAssertEqual(address.rawData, reconstructedData)
     }
+    
+    func test_WhenGibberishNetworkInterfacePassed_ReturnsNil() throws {
+        XCTAssertNil(MacAddress(.builtIn("asdjaiehq")))
+        XCTAssertNil(MacAddress(.nonBuiltIn("asdjaiehq")))
+        XCTAssertNil(MacAddress(.builtIn("en31")))
+        XCTAssertNil(MacAddress(.nonBuiltIn("en31")))
+        XCTAssertNil(MacAddress(.builtIn("")))
+        XCTAssertNil(MacAddress(.nonBuiltIn("")))
+        XCTAssertNil(MacAddress(.builtIn("😜💥")))
+        XCTAssertNil(MacAddress(.nonBuiltIn("😜💥")))
+    }
 
     func testInitPerformance() throws {
         measure {
