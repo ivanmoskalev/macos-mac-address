@@ -23,4 +23,13 @@ jobs:
     - uses: actions/checkout@v2
       
     - name: Build and Test
-      run: swift build && swift test
+      run: swift build && swift test --enable-code-coverage && 
+      
+    - name: Code coverage
+      run: llvm-cov export -format="lcov" .build/debug/MacAddressTests.xctest -instr-profile .build/debug/codecov/default.profdata > unit.lcov
+      continue-on-error: true
+      
+    - uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        verbose: true
