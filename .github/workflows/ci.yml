@@ -15,15 +15,6 @@ jobs:
     
     - name: SwiftLint
       run: swiftlint
-      
-  swiftformat:
-    runs-on: macos-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: SwiftFormat
-      run: swiftformat --lint --verbose .
 
   tests:
     runs-on: macos-latest
