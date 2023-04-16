@@ -1,5 +1,7 @@
 # MacAddress
 
+[![CI](https://github.com/ivanmoskalev/macos-mac-address/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ivanmoskalev/macos-mac-address/actions/workflows/ci.yml)
+
 `MacAddress` is a Swift microlibrary for macOS that provides an easy way to obtain the MAC address of a device's network interface. This library is especially useful when working with Mac App Store receipt validation, as it implements the Apple's recommended fallback strategy (en0 builtin → en1 builtin → en0 non-builtin).
 
 ## Features
