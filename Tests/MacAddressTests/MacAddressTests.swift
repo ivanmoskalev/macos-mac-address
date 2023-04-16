@@ -4,7 +4,11 @@ import XCTest
 final class MacAddressTests: XCTestCase {
     func testAppleRecommended() throws {
         let address = MacAddress.appStoreCompatible!
-        let expectedAddress = MacAddress(.builtIn("en0")) ?? MacAddress(.builtIn("en1")) ?? MacAddress(.nonBuiltIn("en0"))
+        let expectedAddress = (
+            MacAddress(.builtIn("en0"))
+                ?? MacAddress(.builtIn("en1"))
+                ?? MacAddress(.nonBuiltIn("en0"))
+        )
         XCTAssertEqual(address, expectedAddress)
     }
 

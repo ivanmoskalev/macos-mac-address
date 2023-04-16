@@ -34,5 +34,9 @@ public struct MacAddress: Equatable, Hashable {
 public extension MacAddress {
     /// A `MacAddress` instance that is compatible with the Mac App Store receipt validation.
     /// More details: https://developer.apple.com/documentation/appstorereceipts/validating_receipts_on_the_device
-    static let appStoreCompatible = MacAddress(.builtIn("en0")) ?? MacAddress(.builtIn("en1")) ?? MacAddress(.nonBuiltIn("en0"))
+    static let appStoreCompatible = (
+        MacAddress(.builtIn("en0"))
+            ?? MacAddress(.builtIn("en1"))
+            ?? MacAddress(.nonBuiltIn("en0"))
+    )
 }

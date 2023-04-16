@@ -2,7 +2,6 @@ import Foundation
 import IOKit
 
 func macAddressFor(_ interfaceRequest: MacAddress.NetworkInterface) -> Data? {
-    let default_port = kIOMasterPortDefault
     var iterator = io_iterator_t()
     defer {
         if iterator != IO_OBJECT_NULL {
@@ -10,8 +9,8 @@ func macAddressFor(_ interfaceRequest: MacAddress.NetworkInterface) -> Data? {
         }
     }
 
-    guard let matchingDict = IOBSDNameMatching(default_port, 0, interfaceRequest.name),
-          IOServiceGetMatchingServices(default_port,
+    guard let matchingDict = IOBSDNameMatching(kIOMasterPortDefault, 0, interfaceRequest.name),
+          IOServiceGetMatchingServices(kIOMasterPortDefault,
                                        matchingDict as CFDictionary,
                                        &iterator) == KERN_SUCCESS,
           iterator != IO_OBJECT_NULL
@@ -26,6 +25,7 @@ func macAddressFor(_ interfaceRequest: MacAddress.NetworkInterface) -> Data? {
                                                         kCFAllocatorDefault,
                                                         0)
         {
+            // swiftlint:disable:next force_cast
             let isBuiltIn = cftype.takeRetainedValue() as! CFBoolean
             if interfaceRequest.isBuiltIn == CFBooleanGetValue(isBuiltIn) {
                 let property = IORegistryEntrySearchCFProperty(
