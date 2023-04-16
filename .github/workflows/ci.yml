@@ -16,7 +16,7 @@ jobs:
     - name: SwiftLint
       run: swiftlint
       
-  swiftlint:
+  swiftformat:
     runs-on: macos-latest
     
     steps:
