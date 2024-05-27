@@ -2,7 +2,7 @@ import Foundation
 import IOKit
 
 /// A structure representing a MAC address.
-public struct MacAddress: Equatable, Hashable {
+public struct MacAddress: Equatable, Hashable, Sendable {
     /// The raw bytes of the MAC address.
     public let rawData: Data
 
