@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MacAddress'
-  s.version          = '1.1.2'
+  s.version          = '1.2.0'
   s.summary          = 'Obtain the device\'s MAC address on macOS that is compatible with Mac App Store\'s receipt validation.'
 
   s.description      = <<-DESC
